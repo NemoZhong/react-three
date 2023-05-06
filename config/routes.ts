@@ -1,5 +1,9 @@
 export const routes = [
   {
+    path: '/',
+    redirect: '/car',
+  },
+  {
     path: '/car',
     name: 'car-demo',
     component: 'car-demo',
