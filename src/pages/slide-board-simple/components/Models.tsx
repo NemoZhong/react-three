@@ -53,7 +53,7 @@ const Board = () => {
   useEffect(() => {
     if (objModel) {
       objModel.scale.set(0.6, 0.6, 0.6);
-      objModel.position.set(0, 0, 0);
+      objModel.position.set(0, 0, 0.4);
       objModel.rotation.set(PI / 2, PI, isMobile() ? PI * 1.04 : PI * 0.84);
     }
   }, [objModel]);
