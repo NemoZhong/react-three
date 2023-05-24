@@ -2,6 +2,7 @@ import { useEffect, Suspense } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { isMobile } from '@/utils';
 
 const PI = Math.PI;
 
@@ -13,9 +14,11 @@ const lerp = (x: number, { minX, maxX, minY, maxY }: any) => {
 interface Iprops {
   moveX: number;
   maxX: number;
+  initialPos?: number;
 }
 const Models: React.FC<Iprops> = (props) => {
-  const { moveX, maxX } = props;
+  const { moveX, maxX, initialPos } = props;
+
   const rotateY = lerp(moveX, {
     minX: 0,
     maxX: maxX,
@@ -26,7 +29,7 @@ const Models: React.FC<Iprops> = (props) => {
   return (
     <Suspense fallback={null}>
       <Canvas shadows flat={true}>
-        <group rotation-y={rotateY}>
+        <group rotation-y={initialPos + rotateY}>
           <Board />
         </group>
         <spotLight
@@ -49,9 +52,9 @@ const Board = () => {
   });
   useEffect(() => {
     if (objModel) {
-      objModel.scale.set(0.5, 0.5, 0.5);
-      objModel.position.set(0, 0.3, 0);
-      objModel.rotation.set(PI / 2, PI, PI);
+      objModel.scale.set(0.6, 0.6, 0.6);
+      objModel.position.set(0, 0, 0);
+      objModel.rotation.set(PI / 2, PI, isMobile() ? PI * 1.04 : PI * 0.84);
     }
   }, [objModel]);
 
