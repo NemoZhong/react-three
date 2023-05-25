@@ -4,6 +4,7 @@ import { useDrag } from '@use-gesture/react';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { lerp } from '@/utils';
 
 import './index.less';
 
@@ -13,11 +14,6 @@ const finalistColor = {
   '-400': '#ceb7ff',
   '-800': '#9dd1fc',
   '-1200': '#affdff',
-};
-
-const lerp = (x, { minX, maxX, minY, maxY }) => {
-  var slope = (maxY - minY) / (maxX - minX);
-  return (x - minX) * slope + minY;
 };
 
 const iconSet = {

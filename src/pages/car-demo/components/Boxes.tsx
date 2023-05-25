@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, Color } from '@react-three/fiber';
 import { Vector3 } from 'three';
 
-function Box({ color }) {
-  const box = useRef();
+function Box({ color }: { color: Color }) {
+  const box = useRef<any>();
   const time = useRef(0);
   const [position, setPosition] = useState(getInitialPosition());
   const [xRotSpeed] = useState(() => Math.random());
@@ -48,6 +48,7 @@ function Box({ color }) {
       box.current.rotation.x += delta * xRotSpeed;
       box.current.rotation.y += delta * yRotSpeed;
     },
+    // @ts-ignore
     [xRotSpeed, yRotSpeed, position],
   );
 

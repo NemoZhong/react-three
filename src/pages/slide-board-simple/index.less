@@ -10,14 +10,26 @@
   background-color: rgb(125, 206, 206);
 }
 
-.textWrapper {
-  height: 50vh;
-  width: 100vw;
-  background-color: #fff;
-  display: flex;
+.contentWrapper {
   position: absolute;
+  height: 50vh;
 }
 
-.text {
-  height: 100%;
+.content {
+  width: 100vw;
+  padding: 0 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.title {
+  overflow: hidden;
+}
+
+.trailsText {
+  min-height: 30px;
+  color: black;
+  font-size: 14px;
+  font-weight: normal;
+  will-change: transform, opacity;
+  word-break: keep-all;
 }

@@ -2,14 +2,9 @@ import { useEffect, Suspense } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
-import { isMobile } from '@/utils';
+import { isMobile, lerp } from '@/utils';
 
 const PI = Math.PI;
-
-const lerp = (x: number, { minX, maxX, minY, maxY }: any) => {
-  var slope = (maxY - minY) / (maxX - minX);
-  return (x - minX) * slope + minY;
-};
 
 interface Iprops {
   moveX: number;

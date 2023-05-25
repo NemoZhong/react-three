@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 import Models from './components/Models';
-import Info from './components/Info';
+import Title from './components/Title';
+import Content from './components/Content';
 
 import styles from './index.less';
 
@@ -15,6 +16,7 @@ const App = () => {
   const [springX, setSpringX] = useState(initialPos);
   const [active, setActive] = useState(0);
   const [pos, setPos] = useState(initialPos);
+  const [direction, setDir] = useState<number>(0);
 
   const [isFinished, setIsFinished] = useState<any>(true);
 
@@ -37,7 +39,10 @@ const App = () => {
           immediate: true,
         });
       }
-      setActive(Math.abs(currentIdx));
+      const idx = Math.abs(currentIdx);
+      if (Number.isInteger(currentIdx) && idx < 3) {
+        setActive(idx);
+      }
     },
     onRest: ({ finished }) => {
       setIsFinished(finished);
@@ -50,6 +55,7 @@ const App = () => {
       const dir = xDir < 0 ? -1 : 1;
       if (!isFinished) return;
 
+      setDir(dir);
       if (trigger && !down) {
         const newPosition = pos + dir * deviceWidth;
         setSpMove({ mouseMoveX: newPosition });
@@ -70,8 +76,13 @@ const App = () => {
           maxX={deviceWidth * rotatePart}
         />
       </div>
-      <div style={{ position: 'absolute' }}>
-        <Info mouseMoveX={mouseMoveX} />
+      <div className={styles.contentWrapper}>
+        <Title mouseMoveX={mouseMoveX} isFinished={isFinished} />
+        <Content
+          isFinished={isFinished}
+          active={active}
+          direction={direction}
+        />
       </div>
     </div>
   );

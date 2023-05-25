@@ -17,7 +17,6 @@ import {
   BlastFurnaceLargeModel,
   BlastFurnaceConveyorBelt,
 } from './components/Models';
-import CameraController from '@/components/CameraControls.js';
 
 export default function IndexPage() {
   return (
@@ -27,7 +26,6 @@ export default function IndexPage() {
       shadows={true}
     >
       <ambientLight />
-      {/* <CameraController /> */}
 
       <OrbitControls />
 
