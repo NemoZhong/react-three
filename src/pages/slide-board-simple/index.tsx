@@ -16,9 +16,9 @@ const App = () => {
   const [springX, setSpringX] = useState(initialPos);
   const [active, setActive] = useState(0);
   const [pos, setPos] = useState(initialPos);
-  const [direction, setDir] = useState<number>(0);
+  const [direction, setDir] = useState(0);
 
-  const [isFinished, setIsFinished] = useState<any>(true);
+  const [isFinished, setIsFinished] = useState(true);
 
   const [{ mouseMoveX }, setSpMove] = useSpring(() => ({
     mouseMoveX: initialPos,
@@ -44,7 +44,7 @@ const App = () => {
         setActive(idx);
       }
     },
-    onRest: ({ finished }) => {
+    onRest: ({ finished }: { finished: boolean }) => {
       setIsFinished(finished);
     },
   }));

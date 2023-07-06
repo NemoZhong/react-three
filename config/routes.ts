@@ -28,4 +28,9 @@ export const routes = [
     name: 'slide-board-simple',
     component: 'slide-board-simple',
   },
+  {
+    path: '/gsap',
+    name: 'gsap',
+    component: 'gsap',
+  },
 ];
